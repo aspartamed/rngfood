@@ -105,24 +105,6 @@ const SettingsIcon = () => (
 const App = () => {
     useEffect(() => {
         document.title = "Oviedo Eats Picker";
-
-        // This effect dynamically adds the Tailwind CSS framework via a CDN script.
-        // This is crucial for applying the visual styles defined in the JSX classNames.
-        const scriptId = 'tailwind-cdn-script';
-        if (!document.getElementById(scriptId)) {
-            const script = document.createElement('script');
-            script.id = scriptId;
-            script.src = "https://cdn.tailwindcss.com";
-            document.head.appendChild(script);
-
-            // The following cleanup function will remove the script when the component unmounts.
-            return () => {
-                const existingScript = document.getElementById(scriptId);
-                if (existingScript) {
-                    existingScript.remove();
-                }
-            };
-        }
     }, []);
 
     const [restaurants] = useState(restaurantData);
