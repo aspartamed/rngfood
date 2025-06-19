@@ -105,6 +105,9 @@ const SettingsIcon = () => (
 const App = () => {
     useEffect(() => {
         document.title = "Oviedo Eats Picker";
+        // The CDN script was removed as it's not ideal for production.
+        // The proper fix is to install Tailwind via npm and import the CSS
+        // directly in your project, typically in `src/index.css`.
     }, []);
 
     const [restaurants] = useState(restaurantData);
