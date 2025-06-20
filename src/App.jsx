@@ -103,6 +103,10 @@ const SettingsIcon = () => (
 
 
 const App = () => {
+    useEffect(() => {
+        document.title = "Oviedo Eats Picker";
+    }, []);
+
     const [restaurants] = useState(restaurantData);
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -134,8 +138,6 @@ const App = () => {
 
     const handleRandomSelect = () => {
         if (filteredRestaurants.length === 0) {
-            // Replaced alert with a less intrusive method of user feedback.
-            // A visual indicator already exists, so an alert is redundant.
             return;
         }
         setIsLoading(true);
@@ -163,7 +165,7 @@ const App = () => {
                         Oviedo Eats Picker
                     </h1>
                     <p className="text-gray-400 mb-6">
-                        Can't decide where to eat? Let fate choose!
+                        Tired of choosing? Spin the wheel of culinary destiny!
                     </p>
 
                     <div className="mt-8 mb-8">
@@ -209,11 +211,10 @@ const App = () => {
                     )}
                 </div>
                 <p className="text-center text-gray-600 text-xs mt-4">
-                    Disclaimer: Restaurant addresses are for general reference and should be verified.
+                    Disclaimer: Restaurant addresses are for general reference.
                 </p>
             </div>
 
-            {/* Settings Modal */}
             {isSettingsOpen && (
                  <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 animate-fade-in-fast">
                     <div className="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] flex flex-col border border-gray-700">
@@ -251,6 +252,7 @@ const App = () => {
             <style>
                 {`
                     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+                    body { margin: 0; }
                     .font-sans { font-family: 'Inter', sans-serif; }
                     @keyframes fade-in {
                       from { opacity: 0; transform: translateY(10px); }
