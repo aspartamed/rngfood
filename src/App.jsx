@@ -152,10 +152,57 @@ const App = () => {
 
     return (
         <div className="font-sans bg-gray-900 text-white flex items-center justify-center min-h-screen p-4">
+            <style>
+                {`
+                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+                    body { margin: 0; font-family: 'Inter', sans-serif; }
+                    .font-sans { font-family: 'Inter', sans-serif; }
+
+                    /* Button Overrides */
+                    .eats-picker-button {
+                        background-color: #22d3ee !important; /* Tailwind cyan-500 */
+                        color: #111827 !important; /* Tailwind gray-900 */
+                        font-weight: 700 !important;
+                        padding: 1rem 1.5rem !important;
+                        border-radius: 0.75rem !important;
+                        font-size: 1.25rem !important;
+                        width: 100% !important;
+                        transition: all 0.3s ease-in-out !important;
+                        border: none !important;
+                    }
+                    .eats-picker-button:hover {
+                        background-color: #06b6d4 !important; /* Tailwind cyan-600 */
+                        transform: scale(1.05) !important;
+                    }
+                    .eats-picker-button:disabled {
+                        background-color: #4b5563 !important; /* Tailwind gray-600 */
+                        cursor: not-allowed !important;
+                        transform: scale(1) !important;
+                    }
+                    
+                    /* Settings Icon Override */
+                    .settings-button {
+                        background-color: transparent !important;
+                        border: none !important;
+                    }
+
+                    /* Keyframe Animations */
+                    @keyframes fade-in {
+                      from { opacity: 0; transform: translateY(10px); }
+                      to { opacity: 1; transform: translateY(0); }
+                    }
+                    @keyframes fade-in-fast {
+                      from { opacity: 0; }
+                      to { opacity: 1; }
+                    }
+                    .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+                    .animate-fade-in-fast { animation: fade-in-fast 0.2s ease-out forwards; }
+                `}
+            </style>
             <div className="w-full max-w-md mx-auto relative">
                  <button 
                     onClick={() => setIsSettingsOpen(true)}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 transition-colors"
+                    className="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 transition-colors settings-button"
                     aria-label="Open settings"
                 >
                     <SettingsIcon />
@@ -172,7 +219,7 @@ const App = () => {
                         <button
                             onClick={handleRandomSelect}
                             disabled={isLoading || filteredRestaurants.length === 0}
-                            className="w-full bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-4 px-6 rounded-xl text-xl transition-all duration-300 ease-in-out transform hover:scale-105 disabled:bg-gray-600 disabled:cursor-not-allowed disabled:scale-100"
+                            className="eats-picker-button"
                         >
                             {isLoading ? 'Finding a place...' : 'Find a Place to Eat!'}
                         </button>
@@ -240,7 +287,7 @@ const App = () => {
                         <div className="p-4 border-t border-gray-700 mt-auto">
                             <button
                                 onClick={() => setIsSettingsOpen(false)}
-                                className="w-full bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-3 px-6 rounded-lg text-lg transition-colors"
+                                className="eats-picker-button"
                             >
                                 Done
                             </button>
@@ -248,24 +295,6 @@ const App = () => {
                     </div>
                  </div>
             )}
-
-            <style>
-                {`
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-                    body { margin: 0; }
-                    .font-sans { font-family: 'Inter', sans-serif; }
-                    @keyframes fade-in {
-                      from { opacity: 0; transform: translateY(10px); }
-                      to { opacity: 1; transform: translateY(0); }
-                    }
-                    @keyframes fade-in-fast {
-                      from { opacity: 0; }
-                      to { opacity: 1; }
-                    }
-                    .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
-                    .animate-fade-in-fast { animation: fade-in-fast 0.2s ease-out forwards; }
-                `}
-            </style>
         </div>
     );
 };
